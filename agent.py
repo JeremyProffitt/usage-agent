@@ -29,5 +29,6 @@ def query_mysql(natural_language_query: str) -> str:
         messages=[{"role": "user", "content": prompt}]
     )
     sql_query = completion.choices[0].message.content.strip()
+    print(f"SQL Query: {sql_query}")
     result = execute_sql(sql_query)
     return f"SQL: {sql_query}\nResults: {result}"
