@@ -1,13 +1,29 @@
 from modelcontext import Table, Column, Integer, String, ModelContext
 
-class Users(Table):
+class prc(Table):
+    id = Column(Integer, primary_key=True)
+    projectid = Column(Integer)
+    record = Column(String)
+
+class van(Table):
     id = Column(Integer, primary_key=True)
     name = Column(String)
-    email = Column(String)
 
-class Orders(Table):
+class user(Table):
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer)
-    amount = Column(Integer)
+    name = Column(String)
 
-model = ModelContext(tables=[Users, Orders])
+class projects(Table):
+    id = Column(Integer, primary_key=True)
+    Customer = Column(String)
+
+class prc_event(Table):
+    id = Column(Integer, primary_key=True)
+    projectid = Column(Integer)
+    userid = Column(Integer)
+    vanid = Column(Integer)
+    etype = Column(String)
+    currentstate = Column(Integer)
+    timestamp = Column(String)
+
+model = ModelContext(tables=[prc, van, user, projects, prc_event])

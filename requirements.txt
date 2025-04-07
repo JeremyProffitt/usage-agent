@@ -1,5 +1,5 @@
 openai
 openai-agents
-modelcontext
+mcp
 mysql-connector-python
 python-dotenv

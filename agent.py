@@ -1,9 +1,9 @@
+import os
 import openai
 from openai import OpenAI
-from openai.agents import Agent, tool
+from agents import Agent, tool
 from model_context import model
 from query_executor import execute_sql
-import os
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
