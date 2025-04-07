@@ -1,4 +1,4 @@
-import openai
+from openai import OpenAI
 import os
 import requests
 from dotenv import load_dotenv
@@ -6,9 +6,13 @@ from query_executor import execute_sql
 
 
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+
 MCP_SERVER_URL = os.getenv("MCP_SERVER_URL")
 
+client = OpenAI(
+    # This is the default and can be omitted
+    api_key=os.environ.get("OPENAI_API_KEY"),
+)
 
 def query_mysql(natural_language_query: str) -> str:
     schema_context = requests.get(MCP_SERVER_URL).text
@@ -20,10 +24,10 @@ def query_mysql(natural_language_query: str) -> str:
     \"{natural_language_query}\"
     """
 
-    response = openai.ChatCompletion.create(
-        model="gpt-4",
+    completion = client.chat.completions.create(
+        model="gpt-4o",
         messages=[{"role": "user", "content": prompt}]
     )
-    sql_query = response["choices"][0]["message"]["content"].strip()
+    sql_query = completion.choices[0].message.content.strip()
     result = execute_sql(sql_query)
     return f"SQL: {sql_query}\nResults: {result}"
