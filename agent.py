@@ -5,7 +5,6 @@ from agents import Agent, tool
 from model_context import model
 from query_executor import execute_sql
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
 
 @tool
 def query_mysql(natural_language_query: str) -> str:
