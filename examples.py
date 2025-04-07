@@ -1,4 +1,4 @@
-from agent import agent
+from agent import query_mysql
 
 queries = [
     "Get total number of vans.",
@@ -10,5 +10,5 @@ queries = [
 
 for query in queries:
     print(f"> {query}")
-    print(agent.run(query))
+    print(query_mysql(query))
     print()
