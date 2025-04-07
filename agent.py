@@ -4,9 +4,11 @@ import requests
 from dotenv import load_dotenv
 from query_executor import execute_sql
 
+
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 MCP_SERVER_URL = os.getenv("MCP_SERVER_URL")
+
 
 def query_mysql(natural_language_query: str) -> str:
     schema_context = requests.get(MCP_SERVER_URL).text
